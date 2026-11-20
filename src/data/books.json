@@ -4,8 +4,8 @@
     "title": "Бойцовский клуб",
     "author": "Чак Паланик",
     "category": "Антиутопия",
-    "price": 650,
-    "image": "https://placehold.co/200x300/e0e0e0/333?text=Book+1",
+    "price": 21,
+    "image": "/images/1.jpg",
     "description": "Культовый роман Чака Паланика о поиске себя в мире потребления."
   },
   {
@@ -13,8 +13,8 @@
     "title": "Удушье",
     "author": "Чак Паланик",
     "category": "Антиутопия",
-    "price": 720,
-    "image": "https://placehold.co/200x300/e0e0e0/333?text=Book+2",
+    "price": 22,
+    "image": "/images/2.jpg",
     "description": "Провокационная история о сексе, деньгах и желании освободиться."
   },
   {
@@ -22,8 +22,8 @@
     "title": "Колыбельная",
     "author": "Чак Паланик",
     "category": "Антиутопия",
-    "price": 580,
-    "image": "https://placehold.co/200x300/e0e0e0/333?text=Book+3",
+    "price": 20,
+    "image": "/images/3.jpg",
     "description": "Мистический триллер Паланика о песне, способной убивать."
   },
   {
@@ -31,8 +31,8 @@
     "title": "Сияние",
     "author": "Стивен Кинг",
     "category": "Ужасы",
-    "price": 890,
-    "image": "https://placehold.co/200x300/e0e0e0/333?text=Book+4",
+    "price": 30,
+    "image": "/images/4.jpg",
     "description": "Классика жанра от Стивена Кинга. Отель «Оверлук» ждет гостей."
   },
   {
@@ -40,18 +40,17 @@
     "title": "Оно",
     "author": "Стивен Кинг",
     "category": "Ужасы",
-    "price": 1200,
-    "image": "https://placehold.co/200x300/e0e0e0/333?text=Book+5",
+    "price": 33,
+    "image": "/images/5.jpg",
     "description": "Эпическая история о противостоянии детей и древнего зла в Дерри."
   },
-
   {
     "id": "6",
     "title": "Мизери",
     "author": "Стивен Кинг",
     "category": "Ужасы",
-    "price": 840,
-    "image": "https://placehold.co/200x300/e0e0e0/333?text=Book+6",
+    "price": 25,
+    "image": "/images/6.jpg",
     "description": "Психологический хоррор о писателе в плену у своей главной фанатки."
   },
   {
@@ -59,8 +58,8 @@
     "title": "Зеленая миля",
     "author": "Стивен Кинг",
     "category": "Ужасы",
-    "price": 780,
-    "image": "https://placehold.co/200x300/e0e0e0/333?text=Book+7",
+    "price": 28,
+    "image": "/images/7.jpg",
     "description": "История о чудесах и несправедливости в блоке смертников."
   },
   {
@@ -68,8 +67,8 @@
     "title": "Убийство в Восточном экспрессе",
     "author": "Агата Кристи",
     "category": "Детективы",
-    "price": 690,
-    "image": "https://placehold.co/200x300/e0e0e0/333?text=Book+8",
+    "price": 15,
+    "image": "/images/8.jpg",
     "description": "Эркюль Пуаро расследует загадочное убийство в застрявшем поезде."
   },
   {
@@ -77,8 +76,8 @@
     "title": "Десять негритят",
     "author": "Агата Кристи",
     "category": "Детективы",
-    "price": 550,
-    "image": "https://placehold.co/200x300/e0e0e0/333?text=Book+9",
+    "price": 15,
+    "image": "/images/9.jpg",
     "description": "Десять незнакомцев на острове. Кто из них убийца? Классика Агаты Кристи."
   },
   {
@@ -86,8 +85,8 @@
     "title": "Девушка с татуировкой дракона",
     "author": "Стиг Ларссон",
     "category": "Детективы",
-    "price": 820,
-    "image": "https://placehold.co/200x300/e0e0e0/333?text=Book+10",
+    "price": 15,
+    "image": "/images/10.jpg",
     "description": "Мрачный скандинавский нуар о журналисте и хакере."
   },
   {
@@ -95,8 +94,8 @@
     "title": "Шерлок Холмс: Собака Баскервилей",
     "author": "Артур Конан Дойл",
     "category": "Детективы",
-    "price": 640,
-    "image": "https://placehold.co/200x300/e0e0e0/333?text=Book+11",
+    "price": 29,
+    "image": "/images/11.jpg",
     "description": "Самая известная история о великом сыщике и проклятии рода Баскервилей."
   },
   {
@@ -104,8 +103,8 @@
     "title": "О дивный новый мир",
     "author": "Олдос Хаксли",
     "category": "Антиутопия",
-    "price": 700,
-    "image": "https://placehold.co/200x300/e0e0e0/333?text=Book+12",
+    "price": 26,
+    "image": "/images/12.jpg",
     "description": "Классическая антиутопия о мире, где люди создаются на заводах и потребляют счастливые таблетки."
   }
 ]
