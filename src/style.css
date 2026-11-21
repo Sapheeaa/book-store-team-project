@@ -159,7 +159,172 @@ a {
   color: var(--color-dark-text);
 }
 
-/* --- КАТАЛОГ (ГРИД) --- */
+/* --- КАТАЛОГ --- */
+
+.catalog-content {
+  display: grid;
+  grid-template-columns: 250px 1fr; /* 250px для фильтров, остальное для карточек */
+  gap: 40px;
+  align-items: start;
+}
+.catalog-page {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+/* --- заголовок и поиск по книгам в каталоге --- */
+
+.catalog-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 30px;
+  gap: 20px;
+}
+
+.catalog-title {
+  margin-bottom: 20px;
+}
+
+.catalog-title h2 {
+  font-size: 32px;
+  margin-bottom: 8px;
+}
+
+.catalog-title p {
+  color: #888;
+  font-size: 14px;
+  max-width: 300px;
+}
+
+.catalog-search {
+  flex-grow: 1;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.catalog-search input {
+  padding: 12px 16px;
+  width: 100%;
+  max-width: 400px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  outline: none;
+  font-size: 14px;
+}
+
+.btn-search {
+  padding: 12px 24px;
+  background-color: #ffd700;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-search:hover {
+  background-color: #e6c200;
+}
+
+/* панель фильтров */
+
+.filters {
+  background: #ffffff;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  display: flex;
+  flex-direction: column;
+}
+.filter-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333;
+}
+.filter-group {
+  margin-bottom: 24px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #f0f0f0; /* Тонкая линия-разделитель */
+}
+
+.filter-group h3 {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 12px;
+  color: #333;
+}
+
+.filter-group label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.filter-group input[type='checkbox'] {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  accent-color: #ffd700;
+}
+.price-inputs {
+  display: flex;
+  gap: 10px;
+}
+.price-inputs input {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  outline: none;
+  font-size: 14px;
+  transition: border-color 0.2s;
+}
+.price-inputs input:focus {
+  border-color: #ffd700;
+}
+.btn-apply {
+  width: 100%;
+  padding: 12px;
+  background-color: #ffd700;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 14px;
+  color: #333;
+  cursor: pointer;
+  margin-bottom: 12px;
+  transition: background-color 0.2s;
+}
+
+.btn-apply:hover {
+  background-color: #e6c200;
+}
+
+.btn-reset {
+  width: 100%;
+  background: none;
+  border: none;
+  color: #888;
+  font-size: 13px;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.btn-reset:hover {
+  color: #333;
+  text-decoration: underline;
+}
+
+/* --- грид --- */
+
 .catalog-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
