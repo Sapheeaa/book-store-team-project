@@ -409,3 +409,59 @@ a {
 .btn-add:hover {
   background-color: var(--color-primary-hover);
 }
+
+/* Обертка для кнопки "Показать еще" */
+.load-more-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.btn-load-more {
+  padding: 12px 24px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-load-more:hover {
+  background-color: #f0f0f0;
+  border-color: #ccc;
+}
+
+/* Чтобы сетка и кнопка были в одной колонке */
+.catalog-right-side {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Стили для заглушки "Ничего не найдено" */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border-radius: 12px;
+  padding: 60px 20px;
+  text-align: center;
+  width: 100%;
+  /* Чтобы блок занял место как сетка */
+  min-height: 400px;
+}
+
+.empty-state h3 {
+  font-size: 24px;
+  margin-bottom: 12px;
+  color: #333;
+}
+
+.empty-state p {
+  color: #888;
+  font-size: 14px;
+  margin-bottom: 0;
+}

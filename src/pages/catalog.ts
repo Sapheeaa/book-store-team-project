@@ -1,6 +1,19 @@
 import books from '@/data/books.json';
 
 export function renderCatalog(): HTMLElement {
+  // блок "Ничего не найдено" (изначально скрыт)
+  const emptyState = document.createElement('div');
+  emptyState.className = 'empty-state';
+  emptyState.style.display = 'none';
+
+  const emptyStateTitle = document.createElement('h3');
+  emptyStateTitle.textContent = 'Ничего не найдено';
+
+  const emptyStateText = document.createElement('p');
+  emptyStateText.textContent = 'Попробуйте изменить запрос или сбросить фильтры.';
+
+  emptyState.append(emptyStateTitle, emptyStateText);
+
   const main = document.createElement('main');
   main.className = 'catalog-page';
 
@@ -33,6 +46,8 @@ export function renderCatalog(): HTMLElement {
   searchBtn.textContent = 'Найти';
 
   searchContainer.append(searchInput, searchBtn);
+
+  // Собираем заголовок и поиск в headerRow
   headerRow.append(titleContainer, searchContainer);
 
   //контейнер для карточек и фильтра
@@ -105,56 +120,103 @@ export function renderCatalog(): HTMLElement {
   const catalogGrid = document.createElement('div');
   catalogGrid.className = 'catalog-grid';
 
-  books.forEach((book) => {
-    const card = document.createElement('div');
-    card.className = 'book-card';
-    //блок с картинкой
-    const imgContainer = document.createElement('div');
-    imgContainer.className = 'book-image';
+  // Контейнер для кнопки "Показать еще"
+  const loadMoreContainer = document.createElement('div');
+  loadMoreContainer.className = 'load-more-container';
 
-    const img = document.createElement('img');
-    img.src = book.image;
-    img.alt = book.title;
-    imgContainer.appendChild(img);
+  const btnLoadMore = document.createElement('button');
+  btnLoadMore.className = 'btn-load-more';
+  btnLoadMore.textContent = 'Показать ещё';
 
-    //блок с тектом
-    const infoContainer = document.createElement('div');
-    infoContainer.className = 'book-info';
+  let visibleCards = 6;
 
-    const bookTitle = document.createElement('h3');
-    bookTitle.textContent = book.title;
-    bookTitle.className = 'book-title';
+  const renderCards = (booksToRender: typeof books) => {
+    catalogGrid.innerHTML = '';
 
-    const category = document.createElement('p');
-    category.className = 'book-meta';
-    category.textContent = `Категория: ${book.category}`;
+    if (booksToRender.length === 0) {
+      // Если ничего не найдено — показываем заглушку, скрываем сетку
+      catalogGrid.style.display = 'none';
+      loadMoreContainer.style.display = 'none';
+      emptyState.style.display = 'flex';
+      return; // Выходим, чтобы не рисовать карточки
+    } else {
+      // Если есть результаты — скрываем заглушку, показываем сетку
+      catalogGrid.style.display = 'grid';
+      emptyState.style.display = 'none';
+    }
 
-    const author = document.createElement('p');
-    author.className = 'book-meta';
-    author.textContent = book.author;
+    const visibleBooks = booksToRender.slice(0, visibleCards);
 
-    //блок с ценой и кнопкой
-    const bottomContainer = document.createElement('div');
-    bottomContainer.className = 'card-bottom';
+    visibleBooks.forEach((book) => {
+      const card = document.createElement('div');
+      card.className = 'book-card';
+      //блок с картинкой
+      const imgContainer = document.createElement('div');
+      imgContainer.className = 'book-image';
 
-    const price = document.createElement('span');
-    price.className = 'book-price';
-    price.textContent = `${book.price} ₽`;
+      const img = document.createElement('img');
+      img.src = book.image;
+      img.alt = book.title;
+      imgContainer.appendChild(img);
 
-    const btnAdd = document.createElement('button');
-    btnAdd.className = 'btn-add';
-    btnAdd.textContent = 'В корзину';
-    btnAdd.dataset.id = book.id;
+      //блок с тектом
+      const infoContainer = document.createElement('div');
+      infoContainer.className = 'book-info';
 
-    bottomContainer.append(price, btnAdd);
-    infoContainer.append(bookTitle, category, author, bottomContainer);
+      const bookTitle = document.createElement('h3');
+      bookTitle.textContent = book.title;
+      bookTitle.className = 'book-title';
 
-    card.append(imgContainer, infoContainer);
+      const category = document.createElement('p');
+      category.className = 'book-meta';
+      category.textContent = `Категория: ${book.category}`;
 
-    catalogGrid.appendChild(card);
+      const author = document.createElement('p');
+      author.className = 'book-meta';
+      author.textContent = book.author;
+
+      //блок с ценой и кнопкой
+      const bottomContainer = document.createElement('div');
+      bottomContainer.className = 'card-bottom';
+
+      const price = document.createElement('span');
+      price.className = 'book-price';
+      price.textContent = `${book.price} ₽`;
+
+      const btnAdd = document.createElement('button');
+      btnAdd.className = 'btn-add';
+      btnAdd.textContent = 'В корзину';
+      btnAdd.dataset.id = book.id;
+
+      bottomContainer.append(price, btnAdd);
+      infoContainer.append(bookTitle, category, author, bottomContainer);
+
+      card.append(imgContainer, infoContainer);
+
+      catalogGrid.appendChild(card);
+    });
+
+    if (visibleCards >= booksToRender.length) {
+      btnLoadMore.style.display = 'none'; // Скрываем, если все книги показаны
+    } else {
+      btnLoadMore.style.display = 'block'; // Показываем, если есть еще
+    }
+  };
+
+  renderCards([]);
+
+  btnLoadMore.addEventListener('click', () => {
+    visibleCards += 6;
+    renderCards(books);
   });
 
-  catalogContent.append(aside, catalogGrid);
+  loadMoreContainer.appendChild(btnLoadMore);
+
+  const rightSide = document.createElement('div');
+  rightSide.className = 'catalog-right-side';
+  rightSide.append(catalogGrid, loadMoreContainer, emptyState);
+
+  catalogContent.append(aside, rightSide);
 
   main.append(headerRow, catalogContent);
 
