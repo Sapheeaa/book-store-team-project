@@ -203,7 +203,7 @@ export function renderCatalog(): HTMLElement {
     }
   };
 
-  renderCards([]);
+  renderCards(books);
 
   btnLoadMore.addEventListener('click', () => {
     visibleCards += 6;
@@ -214,7 +214,7 @@ export function renderCatalog(): HTMLElement {
 
   const rightSide = document.createElement('div');
   rightSide.className = 'catalog-right-side';
-  rightSide.append(catalogGrid, loadMoreContainer, emptyState);
+  rightSide.append(catalogGrid, loadMoreContainer);
 
   catalogContent.append(aside, rightSide);
 
