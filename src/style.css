@@ -170,7 +170,6 @@ a {
 .catalog-page {
   max-width: 1200px;
   margin: 40px auto;
-  padding: 0 20px;
 }
 /* --- заголовок и поиск по книгам в каталоге --- */
 
@@ -193,7 +192,7 @@ a {
 
 .catalog-title p {
   color: #888;
-  font-size: 14px;
+  font-size: 16px;
   max-width: 300px;
 }
 
