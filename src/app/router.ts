@@ -14,6 +14,12 @@ const RENDERERS: Record<RoutePath, () => HTMLElement> = {
 export function startRouter(mount: HTMLElement): void {
   const render = (): void => {
     const path = parseHash(window.location.hash);
+
+    // замена невалидного hash из адресной строки на '#/'
+    if (window.location.hash !== `#${path}`) {
+      history.replaceState(null, '', `#${path}`);
+    }
+
     mount.replaceChildren(renderLayout(RENDERERS[path](), path));
   };
 
