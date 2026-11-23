@@ -1,4 +1,6 @@
 export function renderAbout(): HTMLElement {
   // заглушка
-  return document.createElement('div');
+  const el = document.createElement('div');
+  el.textContent = 'О нас';
+  return el;
 }
