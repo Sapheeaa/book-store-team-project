@@ -1,4 +1,5 @@
 import books from '@/data/books.json';
+import './catalog.css';
 
 export function renderCatalog(): HTMLElement {
   // блок "Ничего не найдено" (изначально скрыт)
