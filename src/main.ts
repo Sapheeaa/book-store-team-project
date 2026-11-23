@@ -1,13 +1,6 @@
 import './style.css';
-import { createHeader } from '@/components/header';
-import { renderCatalog } from '@/pages/catalog';
+import { startRouter } from './app/router';
 
-const app = document.querySelector<HTMLDivElement>('#app')!;
-
-app.replaceChildren();
-
-const header = createHeader('catalog');
-app.appendChild(header);
-
-const catalogPage = renderCatalog();
-app.appendChild(catalogPage);
+const app = document.getElementById('app');
+if (!app) throw new Error('element id = app not found');
+startRouter(app);

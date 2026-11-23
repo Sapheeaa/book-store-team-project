@@ -1,4 +1,6 @@
-export function createHeader(currentPage: string = 'about'): HTMLElement {
+import type { RoutePath } from '@/types';
+
+export function createHeader(currentPage: RoutePath = '/'): HTMLElement {
   const header = document.createElement('header');
   header.className = 'header';
 
@@ -9,7 +11,7 @@ export function createHeader(currentPage: string = 'about'): HTMLElement {
   headerLogo.className = 'header-logo';
 
   const logoLink = document.createElement('a');
-  logoLink.href = '#about';
+  logoLink.href = '#/';
   logoLink.className = 'header-logo-link';
 
   const logoImg = document.createElement('img');
@@ -33,17 +35,17 @@ export function createHeader(currentPage: string = 'about'): HTMLElement {
   //о нас
   const liAbout = document.createElement('li');
   const aAbout = document.createElement('a');
-  aAbout.href = '#about';
+  aAbout.href = '#/';
   aAbout.textContent = 'О нас';
-  if (currentPage === 'about') aAbout.classList.add('active');
+  if (currentPage === '/') aAbout.classList.add('active');
   liAbout.appendChild(aAbout);
 
   //каталог
   const liCatalog = document.createElement('li');
   const aCatalog = document.createElement('a');
-  aCatalog.href = '#catalog';
+  aCatalog.href = '#/catalog';
   aCatalog.textContent = 'Каталог';
-  if (currentPage === 'catalog') aCatalog.classList.add('active');
+  if (currentPage === '/catalog') aCatalog.classList.add('active');
   liCatalog.appendChild(aCatalog);
 
   ul.append(liAbout, liCatalog);
@@ -58,9 +60,9 @@ export function createHeader(currentPage: string = 'about'): HTMLElement {
   cartImg.className = 'header-cart-icon';
 
   const cartLink = document.createElement('a');
-  cartLink.href = '#cart';
+  cartLink.href = '#/cart';
   cartLink.textContent = 'Корзина';
-  if (currentPage === 'cart') cartLink.classList.add('active');
+  if (currentPage === '/cart') cartLink.classList.add('active');
 
   //счетчик возле корзины
   const cartCount = document.createElement('span');

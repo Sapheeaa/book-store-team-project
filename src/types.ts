@@ -7,3 +7,4 @@ export interface Book {
   image: string;
   description: string;
 }
+export type RoutePath = '/' | '/catalog' | '/cart';
