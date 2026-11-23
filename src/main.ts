@@ -1,4 +1,5 @@
-import './style.css';
+import './main.css';
+
 import { startRouter } from './app/router';
 
 const app = document.getElementById('app');
