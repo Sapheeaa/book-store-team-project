@@ -15,8 +15,10 @@
   --color-dark-text: #333;
   --color-white: #fff;
   --color-light-gray: #f4f4f4;
-  --color-shadow: rgba(0, 0, 0, 0.05);
+  --color-shadow: rgba(0, 0, 0, 0.03);
   --color-shadow-hover: rgba(0, 0, 0, 0.08);
+
+  --border-radius-field: 12px;
 }
 
 body {
