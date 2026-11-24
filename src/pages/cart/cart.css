@@ -1,11 +1,38 @@
+/* Переиспользуемые классы */
+.card__shadow {
+  box-shadow: 0 4px 12px var(--color-shadow);
+}
+
+.btn-cart {
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-cart__yellow {
+  height: 48px;
+  padding: 12px 54px;
+  background-color: var(--color-primary);
+}
+
+.btn-cart__yellow:hover {
+  background-color: var(--color-primary-hover);
+}
+
+.order__row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
 /* --- КОРЗИНА --- */
 .cart-page {
   max-width: 1200px;
   margin: 40px auto;
-}
-
-.card__shadow {
-  box-shadow: 0 4px 12px var(--color-shadow);
 }
 
 .cart-title {
@@ -27,7 +54,7 @@
   width: 100%;
   display: flex;
   flex-direction: row;
-  column-gap: 40px;
+  column-gap: 30px;
 }
 
 .list-books-cart {
@@ -63,7 +90,8 @@
 .info-book {
   display: flex;
   flex-direction: column;
-  width: 242px;
+  width: 208px;
+  max-height: 570px;
 }
 
 .info-book h3 {
@@ -153,6 +181,82 @@
 }
 
 .order-cart {
+  background: var(--color-white);
+  border-radius: var(--border-radius-field);
+  padding: 20px;
+  min-width: 320px;
+
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.order-cart h3 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 21px;
+  color: var(--color-dark-text);
+}
+
+.order-divider {
+  border: 1px solid var(--color-border-field);
+  width: 100%;
+  margin-block: 20px;
+}
+
+.order-price {
+  font-size: 17px;
+  font-weight: 500;
+}
+
+.promo-form .order__row {
+  margin-block: 10px 0;
+}
+
+#promo-form__input {
+  width: 180px;
+  height: 44px;
+  padding: 12px 14px;
+
+  border-radius: 8px;
+  background-color: var(--color-white);
+  border: 1px solid var(--color-border-field);
+}
+
+#promo-form__input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
+
+.promo-form__btn {
+  height: 44px;
+  padding: 11px;
+  background-color: var(--color-white);
+  border: 2px solid #f5ce45;
+}
+
+.promo-form__btn:hover {
+  background-color: var(--color-primary);
+}
+.order-total {
+  margin-block: auto;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.order-total-price {
+  font-size: 34px;
+  font-weight: 500;
+}
+
+.order-submit {
+  width: 100%;
+}
+
+.promo-form__status,
+.order__note {
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--color-gray-text);
 }
 
 .empty-card {
@@ -178,23 +282,4 @@
   font-size: 24px;
   margin-bottom: 12px;
   color: var(--color-dark-text);
-}
-
-.btn-cart {
-  border: none;
-  border-radius: 8px;
-  font-weight: bold;
-  font-size: 14px;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-
-.btn-cart__yellow {
-  height: 48px;
-  padding: 12px 54px;
-  background-color: var(--color-primary);
-}
-
-.btn-cart__yellow:hover {
-  background-color: var(--color-primary-hover);
 }
