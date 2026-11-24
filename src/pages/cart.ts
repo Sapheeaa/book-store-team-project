@@ -1,6 +1,5 @@
 export function renderCart(): HTMLElement {
-  // заглушка
-  const el = document.createElement('div');
-  el.textContent = 'Корзина';
-  return el;
+  const div = document.createElement('div');
+  div.textContent = 'Корзина в разработке...';
+  return div;
 }
