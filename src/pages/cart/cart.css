@@ -29,6 +29,11 @@
   margin-bottom: 20px;
 }
 
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+
 /* --- КОРЗИНА --- */
 .cart-page {
   max-width: 1200px;
@@ -80,6 +85,14 @@
   min-height: 145px;
   width: 100%;
   border: 1px solid var(--color-border-field);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.card-cart:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px var(--color-shadow-hover);
 }
 
 .card-book-info {
@@ -87,11 +100,16 @@
   column-gap: 20px;
 }
 
+.img-book-cart {
+  height: 126px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
 .info-book {
   display: flex;
   flex-direction: column;
   width: 208px;
-  max-height: 570px;
 }
 
 .info-book h3 {
@@ -115,18 +133,15 @@
 .card-price-info {
   display: flex;
   align-items: center;
-  justify-content: end;
+  justify-content: flex-end;
   column-gap: 36px;
 }
 
 .change-quantity-books {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   min-width: 128px;
-}
-
-.change-quantity-books span {
-  margin-block: auto;
 }
 
 .change-quantity-btn {
@@ -142,7 +157,7 @@
     transform 0.1s;
 }
 
-.totalPrise-book {
+.totalPrice-book {
   min-width: 126px;
   padding: 8px 36px;
   background-color: #fff8db;
@@ -228,10 +243,10 @@
 }
 
 .promo-form__btn {
-  height: 44px;
   padding: 11px;
   background-color: var(--color-white);
   border: 2px solid #f5ce45;
+  line-height: 1;
 }
 
 .promo-form__btn:hover {
