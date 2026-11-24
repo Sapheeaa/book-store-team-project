@@ -1,7 +1,8 @@
 import { parseHash } from './routes';
 import { renderAbout } from '@/pages/about';
 import { renderCatalog } from '@/pages/catalog/catalog';
-import { renderCart } from '@/pages/cart';
+//import { renderCart } from '@/pages/cart';
+import { renderCart } from '@/pages/cart/cart';
 import { renderLayout } from '@/shared/layout';
 import type { RoutePath } from '@/types';
 
