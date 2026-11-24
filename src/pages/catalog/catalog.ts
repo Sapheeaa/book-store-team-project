@@ -1,5 +1,6 @@
 import books from '@/data/books.json';
 import './catalog.css';
+import { searchBooks } from '@/features/catalog/catalog-search';
 
 export function renderCatalog(): HTMLElement {
   // блок "Ничего не найдено" (изначально скрыт)
@@ -42,11 +43,11 @@ export function renderCatalog(): HTMLElement {
   searchInput.type = 'text';
   searchInput.placeholder = 'Название книги';
 
-  const searchBtn = document.createElement('button');
-  searchBtn.className = 'btn-search';
-  searchBtn.textContent = 'Найти';
+  const dellBtn = document.createElement('button');
+  dellBtn.className = 'btn-dell';
+  dellBtn.textContent = '✕';
 
-  searchContainer.append(searchInput, searchBtn);
+  searchContainer.append(searchInput, dellBtn);
 
   // Собираем заголовок и поиск в headerRow
   headerRow.append(titleContainer, searchContainer);
@@ -143,6 +144,7 @@ export function renderCatalog(): HTMLElement {
     } else {
       // Если есть результаты — скрываем заглушку, показываем сетку
       catalogGrid.style.display = 'grid';
+      loadMoreContainer.style.display = 'flex';
       emptyState.style.display = 'none';
     }
 
@@ -215,11 +217,33 @@ export function renderCatalog(): HTMLElement {
 
   const rightSide = document.createElement('div');
   rightSide.className = 'catalog-right-side';
-  rightSide.append(catalogGrid, loadMoreContainer);
+  rightSide.append(catalogGrid, loadMoreContainer, emptyState);
 
   catalogContent.append(aside, rightSide);
 
   main.append(headerRow, catalogContent);
+
+  //добавляем обработчик по клику и энтеру
+  let searchTimeout: ReturnType<typeof setTimeout>;
+
+  dellBtn.addEventListener('click', () => {
+    searchInput.value = '';
+
+    visibleCards = 6;
+    renderCards(books);
+  });
+
+  searchInput.addEventListener('input', () => {
+    clearTimeout(searchTimeout);
+
+    searchTimeout = setTimeout(() => {
+      const query = searchInput.value;
+      const filteredSearchBooks = searchBooks(books, query);
+
+      visibleCards = 6;
+      renderCards(filteredSearchBooks);
+    }, 300);
+  });
 
   return main;
 }
