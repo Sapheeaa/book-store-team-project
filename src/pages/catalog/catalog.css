@@ -52,7 +52,7 @@
   font-size: 14px;
 }
 
-.btn-search {
+.btn-dell {
   padding: 12px 24px;
   background-color: #ffd700;
   border: none;
@@ -63,7 +63,7 @@
   transition: background-color 0.2s;
 }
 
-.btn-search:hover {
+.btn-dell:hover {
   background-color: #e6c200;
 }
 
