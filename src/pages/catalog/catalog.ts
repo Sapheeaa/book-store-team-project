@@ -131,6 +131,7 @@ export function renderCatalog(): HTMLElement {
   btnLoadMore.textContent = 'Показать ещё';
 
   let visibleCards = 6;
+  let currentBooks = books;
 
   const renderCards = (booksToRender: typeof books) => {
     catalogGrid.innerHTML = '';
@@ -210,7 +211,7 @@ export function renderCatalog(): HTMLElement {
 
   btnLoadMore.addEventListener('click', () => {
     visibleCards += 6;
-    renderCards(books);
+    renderCards(currentBooks);
   });
 
   loadMoreContainer.appendChild(btnLoadMore);
@@ -231,12 +232,14 @@ export function renderCatalog(): HTMLElement {
     //(onSearch) что делать, когда найдутся книги
     (filteredSearchBooks) => {
       visibleCards = 6;
-      renderCards(filteredSearchBooks);
+      currentBooks = filteredSearchBooks;
+      renderCards(currentBooks);
     },
     // (onReset) что делать, когда нажмут на крестик
     () => {
       visibleCards = 6;
-      renderCards(books);
+      currentBooks = books;
+      renderCards(currentBooks);
     },
   );
 
