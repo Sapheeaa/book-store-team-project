@@ -1,6 +1,6 @@
 import books from '@/data/books.json';
 import './catalog.css';
-import { searchBooks } from '@/features/catalog/catalog-search';
+import { initSearch } from '@/features/catalog/catalog-search-controller';
 
 export function renderCatalog(): HTMLElement {
   // блок "Ничего не найдено" (изначально скрыт)
@@ -223,27 +223,22 @@ export function renderCatalog(): HTMLElement {
 
   main.append(headerRow, catalogContent);
 
-  //добавляем обработчик по клику и энтеру
-  let searchTimeout: ReturnType<typeof setTimeout>;
+  initSearch(
+    searchInput,
+    dellBtn,
+    books,
 
-  dellBtn.addEventListener('click', () => {
-    searchInput.value = '';
-
-    visibleCards = 6;
-    renderCards(books);
-  });
-
-  searchInput.addEventListener('input', () => {
-    clearTimeout(searchTimeout);
-
-    searchTimeout = setTimeout(() => {
-      const query = searchInput.value;
-      const filteredSearchBooks = searchBooks(books, query);
-
+    //(onSearch) что делать, когда найдутся книги
+    (filteredSearchBooks) => {
       visibleCards = 6;
       renderCards(filteredSearchBooks);
-    }, 300);
-  });
+    },
+    // (onReset) что делать, когда нажмут на крестик
+    () => {
+      visibleCards = 6;
+      renderCards(books);
+    },
+  );
 
   return main;
 }
