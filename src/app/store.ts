@@ -52,3 +52,8 @@ export function decreaseBookInCart(book: Book): void {
     return { ...item, quantity: item.quantity - 1 };
   });
 }
+
+// Использование только в тестах
+export function clearCart(): void {
+  cartItems = [];
+}
