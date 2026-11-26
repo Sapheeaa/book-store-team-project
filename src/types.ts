@@ -8,3 +8,9 @@ export interface Book {
   description: string;
 }
 export type RoutePath = '/' | '/catalog' | '/cart';
+
+export interface FilterParams {
+  categories: string[];
+  minPrice: number | null;
+  maxPrice: number | null;
+}

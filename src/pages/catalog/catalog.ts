@@ -1,6 +1,8 @@
 import books from '@/data/books.json';
 import './catalog.css';
 import { initSearch } from '@/features/catalog/catalog-search-controller';
+import { initFilters } from '@/features/catalog/catalog-filters-controller';
+import { filterBooks } from '@/features/catalog/catalog-filter';
 
 export function renderCatalog(): HTMLElement {
   // блок "Ничего не найдено" (изначально скрыт)
@@ -82,7 +84,7 @@ export function renderCatalog(): HTMLElement {
     genreTitle,
     createLabel('Ужасы'),
     createLabel('Антиутопия'),
-    createLabel('Детектив'),
+    createLabel('Детективы'),
   );
 
   // Группа Цена
@@ -206,8 +208,7 @@ export function renderCatalog(): HTMLElement {
       btnLoadMore.style.display = 'block'; // Показываем, если есть еще
     }
   };
-
-  renderCards(books);
+  renderCards(currentBooks);
 
   btnLoadMore.addEventListener('click', () => {
     visibleCards += 6;
@@ -224,18 +225,40 @@ export function renderCatalog(): HTMLElement {
 
   main.append(headerRow, catalogContent);
 
+  //инициализация поиска
   initSearch(
     searchInput,
     dellBtn,
     books,
-
-    //(onSearch) что делать, когда найдутся книги
+    // Когда ищем:
     (filteredSearchBooks) => {
       visibleCards = 6;
       currentBooks = filteredSearchBooks;
       renderCards(currentBooks);
     },
-    // (onReset) что делать, когда нажмут на крестик
+    // Когда сбрасываем поиск:
+    () => {
+      visibleCards = 6;
+      currentBooks = books;
+      renderCards(currentBooks);
+    },
+  );
+
+  //инициализация фильтров
+  initFilters(
+    btnApply,
+    btnReset,
+    genreGroup,
+    inputFrom,
+    inputTo,
+
+    (parms) => {
+      const filteredBooks = filterBooks(books, parms);
+      visibleCards = 6;
+      currentBooks = filteredBooks;
+      renderCards(currentBooks);
+    },
+
     () => {
       visibleCards = 6;
       currentBooks = books;
