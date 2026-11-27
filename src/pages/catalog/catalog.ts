@@ -230,6 +230,14 @@ export function renderCatalog(): HTMLElement {
     books,
     // Когда ищем:
     (filteredSearchBooks) => {
+      //очистка фильтров
+      inputFrom.value = '';
+      inputTo.value = '';
+      const AllCheckboxes = genreGroup.querySelectorAll('input[type = "checkbox"]');
+      AllCheckboxes.forEach((cb) => {
+        (cb as HTMLInputElement).checked = false;
+      });
+
       visibleCards = 6;
       currentBooks = filteredSearchBooks;
       renderCards(currentBooks);
@@ -251,6 +259,9 @@ export function renderCatalog(): HTMLElement {
     inputTo,
 
     (parms) => {
+      //сбрасываем поиск
+      searchInput.value = '';
+
       const filteredBooks = filterBooks(books, parms);
       visibleCards = 6;
       currentBooks = filteredBooks;
