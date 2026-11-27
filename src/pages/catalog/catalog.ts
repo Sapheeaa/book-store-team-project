@@ -3,7 +3,7 @@ import './catalog.css';
 import { initSearch } from '@/features/catalog/catalog-search-controller';
 import { initFilters } from '@/features/catalog/catalog-filters-controller';
 import { filterBooks } from '@/features/catalog/catalog-filter';
-import { addBookToCart } from '@/app/store';
+import { createAddToCartButton } from './add-to-cart-button';
 
 export function renderCatalog(): HTMLElement {
   // блок "Ничего не найдено" (изначально скрыт)
@@ -190,18 +190,7 @@ export function renderCatalog(): HTMLElement {
       price.className = 'book-price';
       price.textContent = `${book.price} ₽`;
 
-      const btnAdd = document.createElement('button');
-      btnAdd.className = 'btn-add';
-      btnAdd.textContent = 'В корзину';
-      btnAdd.dataset.id = book.id;
-
-      // Обработчик клика по кнопке "В корзину"
-      btnAdd.addEventListener('click', () => {
-        addBookToCart(book);
-
-        btnAdd.textContent = 'Добавлено';
-        btnAdd.style.backgroundColor = '#ccc';
-      });
+      const btnAdd = createAddToCartButton(book);
 
       bottomContainer.append(price, btnAdd);
       infoContainer.append(bookTitle, category, author, bottomContainer);
