@@ -1,6 +1,7 @@
 import createEl from '@/shared/element';
 import { getCartItems, getOrderPrice, getTotalQuantity } from '@/app/store';
 import { renderPromoForm } from './cart-promo-form';
+import { renderMessage } from './cart-message';
 
 /** «1 наименование», «3 наименования», «5 наименований» */
 function formatPositions(count: number): string {
@@ -76,6 +77,9 @@ export function renderCartOrder(): HTMLElement {
     ],
   });
 
+  // <dialog>
+  const message = renderMessage();
+
   const order = createEl('aside', {
     className: 'order-cart card__shadow',
     children: [
@@ -89,11 +93,13 @@ export function renderCartOrder(): HTMLElement {
         className: 'order-submit btn-cart btn-cart__yellow',
         text: 'Оформить заказ',
         attrs: { type: 'button' },
+        on: { click: () => message.showModal() },
       }),
       createEl('p', {
         className: 'order__note',
         text: 'Доставка рассчитывается при оформлении заказа.',
       }),
+      message,
     ],
   });
 

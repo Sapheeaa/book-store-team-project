@@ -64,10 +64,8 @@ export function decreaseBookInCart(book: Book): void {
   notifyCartUpdate();
 }
 
-// Использование только в тестах
 export function clearCart(): void {
   cartItems = [];
-
   notifyCartUpdate();
 }
 
