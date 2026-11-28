@@ -75,3 +75,8 @@ export function clearCart(): void {
 export function getTotalQuantity(): number {
   return cartItems.reduce((total, item) => total + item.quantity, 0);
 }
+
+// Общая стоимость заказа без учета скидки
+export function getOrderPrice(): number {
+  return cartItems.reduce((sum, item) => sum + item.quantity * item.book.price, 0);
+}
