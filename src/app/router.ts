@@ -1,5 +1,5 @@
 import { parseHash } from './routes';
-import { renderAbout } from '@/pages/about';
+import { renderAbout } from '@/pages/about/about';
 import { renderCatalog } from '@/pages/catalog/catalog';
 import { renderCart } from '@/pages/cart/cart';
 import { renderLayout } from '@/shared/layout';
