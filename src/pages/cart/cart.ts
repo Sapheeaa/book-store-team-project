@@ -10,8 +10,12 @@ export function renderCart(): HTMLElement {
   const mainCart = createEl('section', { className: 'main-cart' });
   const cartOrder = renderCartOrder();
 
+  // id всех товаров в корзине
+  let booksInCartIds: string = '';
+
   const renderMainCart = (): void => {
     const itemsInCart = getCartItems();
+    booksInCartIds = itemsInCart.map((item) => item.book.id).join('|');
 
     if (itemsInCart.length === 0) {
       mainCart.replaceChildren(renderEmptyCartState());
@@ -20,7 +24,7 @@ export function renderCart(): HTMLElement {
       const listBooks = createEl('ul', {
         className: 'list-books-cart',
         children: itemsInCart.map((item) =>
-          createEl('li', { children: [renderCartBookCard(item, renderMainCart)] }),
+          createEl('li', { children: [renderCartBookCard(item)] }),
         ),
       });
 
@@ -46,6 +50,20 @@ export function renderCart(): HTMLElement {
       mainCart,
     ],
   });
+
+  // Подписка на изменение корзины (с самоотпиской)
+  const handleCartUpdate = (): void => {
+    if (!mainCart.isConnected) {
+      window.removeEventListener('cart-updated', handleCartUpdate);
+      return;
+    }
+    const nextBooksInCartIds = getCartItems()
+      .map((item) => item.book.id)
+      .join('|');
+    if (nextBooksInCartIds === booksInCartIds) return; // то есть изменилось только количество
+    renderMainCart();
+  };
+  window.addEventListener('cart-updated', handleCartUpdate);
 
   return cartPage;
 }
