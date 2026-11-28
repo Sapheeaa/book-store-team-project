@@ -298,3 +298,43 @@ ul {
   margin-bottom: 12px;
   color: var(--color-dark-text);
 }
+
+.modal {
+  border: none;
+  border-radius: var(--border-radius-field);
+  padding: 0;
+  margin: auto;
+  max-width: 400px;
+  width: 70%;
+  background: var(--color-white);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.modal__content {
+  padding: 32px 24px 24px;
+  text-align: center;
+}
+
+.modal__icon {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 16px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  color: var(--color-gray-text);
+  font-size: 28px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal__title {
+  margin: 0 0 16px;
+  font-size: 22px;
+}
+
+.modal__btn {
+  width: 100%;
+  font-size: 16px;
+}

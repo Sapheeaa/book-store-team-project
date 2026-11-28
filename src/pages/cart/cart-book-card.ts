@@ -7,10 +7,7 @@ import {
 } from '@/app/store';
 import type { CartItem } from '@/types';
 
-export function renderCartBookCard(
-  { book, quantity }: CartItem,
-  rerenderCart: () => void,
-): HTMLElement {
+export function renderCartBookCard({ book, quantity }: CartItem): HTMLElement {
   // --- Изменяемые поля ---
   const quantityBooks = createEl('span', {
     className: 'quantity-books',
@@ -37,9 +34,6 @@ export function renderCartBookCard(
       click: () => {
         decreaseBookInCart(book);
         changeCardFields();
-        if (getBookQuantity(book) === 0) {
-          rerenderCart();
-        }
       },
     },
   });
@@ -59,12 +53,7 @@ export function renderCartBookCard(
   const removeBtn = createEl('button', {
     className: 'card-cart__remove',
     attrs: { type: 'button', 'aria-label': 'Удалить товар' },
-    on: {
-      click: () => {
-        removeBookFromCart(book);
-        rerenderCart();
-      },
-    },
+    on: { click: () => removeBookFromCart(book) },
   });
 
   // --- Правая часть карточки товара ---
