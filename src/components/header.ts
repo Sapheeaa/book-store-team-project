@@ -1,4 +1,5 @@
 import type { RoutePath } from '@/types';
+import { createCartCount } from './cartCount';
 
 export function createHeader(currentPage: RoutePath = '/'): HTMLElement {
   const header = document.createElement('header');
@@ -65,10 +66,7 @@ export function createHeader(currentPage: RoutePath = '/'): HTMLElement {
   if (currentPage === '/cart') cartLink.classList.add('active');
 
   //счетчик возле корзины
-  const cartCount = document.createElement('span');
-  cartCount.className = 'header-cart-count';
-
-  cartCount.textContent = '0';
+  const cartCount = createCartCount();
 
   cartDiv.append(cartImg, cartLink, cartCount);
 
