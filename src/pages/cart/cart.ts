@@ -8,6 +8,7 @@ import './cart.css';
 export function renderCart(): HTMLElement {
   // --- Общее содержание корзины ---
   const mainCart = createEl('section', { className: 'main-cart' });
+  const cartOrder = renderCartOrder();
 
   const renderMainCart = (): void => {
     const itemsInCart = getCartItems();
@@ -25,7 +26,7 @@ export function renderCart(): HTMLElement {
 
       const notEmptyCart = createEl('div', {
         className: 'main-cart__container',
-        children: [listBooks, renderCartOrder()],
+        children: [listBooks, cartOrder],
       });
 
       mainCart.replaceChildren(notEmptyCart);
