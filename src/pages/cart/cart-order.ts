@@ -1,5 +1,6 @@
 import createEl from '@/shared/element';
 import { getCartItems, getOrderPrice, getTotalQuantity } from '@/app/store';
+import { renderPromoForm } from './cart-promo-form';
 
 /** «1 наименование», «3 наименования», «5 наименований» */
 function formatPositions(count: number): string {
@@ -15,14 +16,25 @@ export function renderCartOrder(): HTMLElement {
   const totalBookQuantity = createEl('dt', {});
   const bookQuantity = createEl('dd', {});
   const orderPrice = createEl('dd', { className: 'order-price' });
+  const discountLabel = createEl('dt', { text: 'Скидка 0%' });
+  const discountValue = createEl('dd', { text: '-0 ₽' });
   const orderTotalPrice = createEl('dd', { className: 'order-total-price' });
+
+  // Состояние скидки живет здесь
+  let discountPercent = 0;
 
   // Функция обновления полей в заказе
   const updateValues = (): void => {
+    const price = getOrderPrice();
+    const discountRubles = Math.round((price * discountPercent) / 100);
+
     totalBookQuantity.textContent = `Товаров: ${getTotalQuantity()}`;
     bookQuantity.textContent = formatPositions(getCartItems().length);
-    orderPrice.textContent = `${getOrderPrice()} ₽`;
-    orderTotalPrice.textContent = `${getOrderPrice()} ₽`;
+    orderPrice.textContent = `${price} ₽`;
+
+    discountLabel.textContent = `Скидка ${discountPercent}%`;
+    discountValue.textContent = `-${discountRubles} ₽`;
+    orderTotalPrice.textContent = `${price - discountRubles} ₽`;
   };
 
   updateValues();
@@ -40,34 +52,22 @@ export function renderCartOrder(): HTMLElement {
     ],
   });
 
-  const promoForm = createEl('form', {
-    className: 'promo-form',
-    children: [
-      createEl('label', { text: 'Промокод', attrs: { for: 'promo-form__input' } }),
-      createEl('div', {
-        className: 'order__row',
-        children: [
-          createEl('input', { attrs: { id: 'promo-form__input', type: 'text' } }),
-          createEl('button', {
-            className: 'btn-cart promo-form__btn',
-            text: 'Применить',
-            attrs: { type: 'submit' },
-          }),
-        ],
-      }),
-      createEl('p', {
-        className: 'promo-form__status',
-        text: 'Введите промокод, для применения скидки',
-        attrs: { role: 'status', 'aria-live': 'polite' },
-      }),
-    ],
+  const promoForm = renderPromoForm({
+    onApplyDiscount: (percent) => {
+      discountPercent = percent;
+      updateValues();
+    },
+    onResetDiscount: () => {
+      discountPercent = 0;
+      updateValues();
+    },
   });
 
   const orderSummaryTotals = createEl('dl', {
     children: [
       createEl('div', {
         className: 'order__row',
-        children: [createEl('dt', { text: 'Скидка 0%' }), createEl('dd', { text: '-0 ₽' })],
+        children: [discountLabel, discountValue],
       }),
       createEl('div', {
         className: 'order__row',
