@@ -8,7 +8,6 @@ import {
 } from '@/app/store';
 import type { Book } from '@/types';
 
-// Создаем тестовые книги (мини-версия JSON)
 const mockBook1: Book = {
   id: '1',
   title: 'Бойцовский клуб',
